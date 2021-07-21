@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../features/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { addSubscription, selectUser } from '../../features/userSlice'
 import db from '../../firebase'
 import './PlansList.css'
 import { loadStripe } from '@stripe/stripe-js'
@@ -9,6 +9,7 @@ const PlansList = () => {
     const [products, setProducts] = useState([])
     const user = useSelector(selectUser)
     const [subscription, setSubscription] = useState(null)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         db.collection('customers')
@@ -22,6 +23,11 @@ const PlansList = () => {
                         current_period_end: subscription.data().current_period_end.seconds,
                         current_period_start: subscription.data().current_period_start.seconds
                     })
+                    dispatch(addSubscription({
+                        plan: subscription.data().role,
+                        start_date: subscription.data().current_period_end.seconds,
+                        end_date: subscription.data().current_period_start.seconds
+                    }))
                 })
             })
     }, [user.uid])
