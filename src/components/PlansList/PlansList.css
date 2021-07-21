@@ -6,7 +6,7 @@
     opacity: 0.8;
 }
 
-.plansList__plan--disabled {
+.plansList__button--disabled {
     background-color: gray !important;
 }
 

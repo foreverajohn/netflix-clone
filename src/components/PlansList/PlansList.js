@@ -52,9 +52,6 @@ const PlansList = () => {
             })
     }, [])
 
-    console.log(products)
-    console.log(subscription)
-
     const loadCheckout = async (priceId) => {
         const docRef = await db
             .collection('customers')
@@ -87,12 +84,12 @@ const PlansList = () => {
             {Object.entries(products).map(([productId, productData]) => {
                 const isCurrentPackage = productData.name?.toLowerCase().includes(subscription?.role);
                 return (
-                    <div className={`${isCurrentPackage && 'plansList__plan--disabled'} plansList__plan`} key={productId}>
+                    <div className={` plansList__plan`} key={productId}>
                         <div className="plansList__info">
                             <h5>{productData.name}</h5>
                             <h6>{productData.description}</h6>
                         </div>
-                        <button onClick={() => !isCurrentPackage && loadCheckout(productData?.prices?.priceId)} className="plansList__button">{isCurrentPackage ? "Current Package" : "Subscribe"}</button>
+                        <button onClick={() => !isCurrentPackage && loadCheckout(productData?.prices?.priceId)} className={`${isCurrentPackage && 'plansList__button--disabled'} plansList__button`}>{isCurrentPackage ? "Current Package" : "Subscribe"}</button>
                     </div>
                 )
             })}

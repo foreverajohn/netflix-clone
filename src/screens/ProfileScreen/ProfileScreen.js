@@ -19,7 +19,7 @@ const ProfileScreen = () => {
                     <div className="profileScreen__details">
                         <h2>{user.email}</h2>
                         <div className="profileScreen__plans">
-                            <h3>Plans</h3>
+                            <h3>Plans (Current Plan: {user.subscription?.plan})</h3>
                             <PlansList />
                             <button onClick={() => auth.signOut()} className='profileScreen__signOut'>Sign Out</button>
                         </div>
