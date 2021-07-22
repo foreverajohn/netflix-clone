@@ -2,10 +2,18 @@ import React, { useEffect, useState } from 'react'
 import './Row.css'
 import axios from '../../axios'
 import { IMAGE_BASE_URL } from '../../requests'
+import { useDispatch } from 'react-redux'
+import { renderMovie, toggleModal } from '../../features/appSlice'
 
 
 const Row = ({ title, fetchUrl, isLargeRow = false }) => {
     const [movies, setMovies] = useState([])
+    const dispatch = useDispatch()
+
+    const movieInfo = (movie) => {
+        dispatch(toggleModal())
+        dispatch(renderMovie(movie))
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -24,7 +32,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
                     (movie) => 
                     ((isLargeRow && movie.poster_path) ||
                     (!isLargeRow && movie.backdrop_path)) && (
-                        <img className={`row__poster ${isLargeRow && "row__posterLarge"}`} key={movie.id} src={`${IMAGE_BASE_URL}${isLargeRow ? movie.poster_path : movie.backdrop_path}`} alt={movie.name} />
+                        <img onClick={() => movieInfo(movie)} className={`row__poster ${isLargeRow && "row__posterLarge"}`} key={movie.id} src={`${IMAGE_BASE_URL}${isLargeRow ? movie.poster_path : movie.backdrop_path}`} alt={movie.name} />
                     )
                 )}
             </div>

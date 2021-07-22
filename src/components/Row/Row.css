@@ -14,6 +14,10 @@
     display: none;
 }
 
+.row__posters > img  {
+    cursor: pointer;
+}
+
 .row__poster {
     max-height: 100px;
     object-fit: contain;

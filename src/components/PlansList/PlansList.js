@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addSubscription, selectUser } from '../../features/userSlice'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../features/userSlice'
 import db from '../../firebase'
 import './PlansList.css'
 import { loadStripe } from '@stripe/stripe-js'
@@ -9,7 +9,6 @@ const PlansList = () => {
     const [products, setProducts] = useState([])
     const user = useSelector(selectUser)
     const [subscription, setSubscription] = useState(null)
-    const dispatch = useDispatch()
 
     useEffect(() => {
         db.collection('customers')
@@ -23,11 +22,6 @@ const PlansList = () => {
                         current_period_end: subscription.data().current_period_end.seconds,
                         current_period_start: subscription.data().current_period_start.seconds
                     })
-                    dispatch(addSubscription({
-                        plan: subscription.data().role,
-                        start_date: subscription.data().current_period_end.seconds,
-                        end_date: subscription.data().current_period_start.seconds
-                    }))
                 })
             })
     }, [user.uid])
@@ -84,7 +78,7 @@ const PlansList = () => {
             {Object.entries(products).map(([productId, productData]) => {
                 const isCurrentPackage = productData.name?.toLowerCase().includes(subscription?.role);
                 return (
-                    <div className={` plansList__plan`} key={productId}>
+                    <div className='plansList__plan' key={productId}>
                         <div className="plansList__info">
                             <h5>{productData.name}</h5>
                             <h6>{productData.description}</h6>

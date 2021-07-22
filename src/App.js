@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
-import { auth } from './firebase';
+import db, { auth } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, logout, selectUser } from './features/userSlice'
+import { addSubscription, login, logout, selectUser } from './features/userSlice'
 
 function App() {
   const user = useSelector(selectUser)
@@ -19,6 +19,19 @@ function App() {
           uid: userAuth.uid,
           email: userAuth.email,
         }))
+        db.collection('customers')
+        .doc(userAuth.uid)
+        .collection('subscriptions')
+        .get()
+        .then(querySnapshot => {
+            querySnapshot.forEach(async subscription => {
+                dispatch(addSubscription({
+                    plan: subscription.data().role,
+                    start_date: subscription.data().current_period_end.seconds,
+                    end_date: subscription.data().current_period_start.seconds
+                }))
+            })
+        })
       } else {
         dispatch(logout())
       }
