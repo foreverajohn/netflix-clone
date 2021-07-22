@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import './Banner.css'
 import axios from '../../axios'
 import requests, { IMAGE_BASE_URL } from '../../requests'
+import Button from '../Button/Button'
 
 const Banner = () => {
     const [movie, setMovie] = useState([])
+    const [show, setShow] = useState(false)
 
     useEffect(() => {
         async function fetchData() {
@@ -17,6 +19,7 @@ const Banner = () => {
             return request;
         }
         fetchData();
+        setShow(true);
     }, [])
 
     function truncate(string, n) {
@@ -32,11 +35,11 @@ const Banner = () => {
                 backgroundPosition: 'center center',
             }}
         >
-            <div className="banner__contents">
+            <div className={`${show ? 'banner__contents' : 'hidden'}`}>
                 <h1 className='banner__title'>{movie?.title || movie?.name || movie?.original_name}</h1>
                 <div className="banner__buttons">
-                    <button className="banner__button">Play</button>
-                    <button className="banner__button">My List</button>
+                    <Button title='Play' />
+                    <Button title='My List' />
                 </div>
                 <h1 className="banner__description">{truncate(movie?.overview, 150)}</h1>
             </div>

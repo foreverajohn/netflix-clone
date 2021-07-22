@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomeScreen from './screens/HomeScreen/HomeScreen';
@@ -20,18 +20,18 @@ function App() {
           email: userAuth.email,
         }))
         db.collection('customers')
-        .doc(userAuth.uid)
-        .collection('subscriptions')
-        .get()
-        .then(querySnapshot => {
+          .doc(userAuth.uid)
+          .collection('subscriptions')
+          .get()
+          .then(querySnapshot => {
             querySnapshot.forEach(async subscription => {
-                dispatch(addSubscription({
-                    plan: subscription.data().role,
-                    start_date: subscription.data().current_period_end.seconds,
-                    end_date: subscription.data().current_period_start.seconds
-                }))
+              dispatch(addSubscription({
+                plan: subscription.data().role,
+                start_date: subscription.data().current_period_end.seconds,
+                end_date: subscription.data().current_period_start.seconds
+              }))
             })
-        })
+          })
       } else {
         dispatch(logout())
       }

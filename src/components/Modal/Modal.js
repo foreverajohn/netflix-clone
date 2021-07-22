@@ -1,8 +1,8 @@
-import { Close } from '@material-ui/icons'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectModalMovie, toggleModal } from '../../features/appSlice'
 import { IMAGE_BASE_URL } from '../../requests'
+import Button from '../Button/Button'
 import './Modal.css'
 
 const Modal = ({ isOpen }) => {
@@ -26,15 +26,14 @@ const Modal = ({ isOpen }) => {
                 }}>
                 <div className="modal__content--fade" />
                 <div className="modal__contentLeft">
-                    <h1>{movie.name}</h1>
+                    <h1>{movie.name || movie.original_title}</h1>
                     <p>{movie.overview}</p>
                     <div className="modal__buttons">
-                        <button className="modal__button">Play</button>
-                        <button className="modal__button">My List</button>
+                        <Button title='Play' />
+                        <Button title='My List' />
                     </div>
                 </div>
                 <div className="modal__contentRight">
-                    <Close className='modal__closeButton' onClick={() => handleClose()} />
                     <div className="modal__thumbnail">
                         <img src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.name} />
                         <div className="modal__score">
