@@ -1,9 +1,9 @@
 import React from 'react'
 import './Button.css'
 
-const Button = ({ title }) => {
+const Button = ({ title, callback }) => {
     return (
-        <button className="modal__button">{title}</button>
+        <button className="modal__button" onClick={callback}>{title}</button>
     )
 }
 

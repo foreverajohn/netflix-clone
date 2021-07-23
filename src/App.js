@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomeScreen from './screens/HomeScreen/HomeScreen';
@@ -7,6 +7,7 @@ import LoginScreen from './screens/LoginScreen/LoginScreen';
 import db, { auth } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { addSubscription, login, logout, selectUser } from './features/userSlice'
+import MyListScreen from './screens/MyListScreen/MyListScreen';
 
 function App() {
   const user = useSelector(selectUser)
@@ -54,6 +55,9 @@ function App() {
               </Route>
               <Route path="/profile">
                 <ProfileScreen />
+              </Route>
+              <Route path="/my_list">
+                <MyListScreen />
               </Route>
             </Switch>
           )

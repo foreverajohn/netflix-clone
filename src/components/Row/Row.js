@@ -8,12 +8,17 @@ import { renderMovie, toggleModal } from '../../features/appSlice'
 
 const Row = ({ title, fetchUrl, isLargeRow = false }) => {
     const [movies, setMovies] = useState([])
+    const [loading, setLoading] = useState(true)
     const dispatch = useDispatch()
 
     const movieInfo = (movie) => {
         dispatch(toggleModal())
         dispatch(renderMovie(movie))
     }
+
+    useEffect(() => {
+        setLoading(false);
+    }, [])
 
     useEffect(() => {
         async function fetchData() {
@@ -27,7 +32,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
     return (
         <div className='row'>
             <h2>{title}</h2>
-            <div className="row__posters">
+            <div className={`${loading ? 'hidden' : 'row__posters'}`}>
                 {movies.map(
                     (movie) => 
                     ((isLargeRow && movie.poster_path) ||

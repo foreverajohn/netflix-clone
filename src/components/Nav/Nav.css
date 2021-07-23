@@ -16,6 +16,11 @@
     justify-content: space-between;
 }
 
+.navCenter {
+    display: flex;
+    flex: 0.7;
+}
+
 .nav__black {
     background-color: #111;
 }
@@ -28,6 +33,20 @@
     object-fit: contain;
     padding-left: 20px;
     cursor: pointer;
+}
+
+.nav__link {
+    color: #fff;
+    font-weight: 500 ;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: transform 150ms;
+    padding-bottom: 8px;
+}
+
+.nav__link:hover {
+    transform: scale(1.2);
+    border-bottom: 0.5px solid #e50914;
 }
 
 .nav__avatar {

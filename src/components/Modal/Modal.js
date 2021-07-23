@@ -9,8 +9,6 @@ const Modal = ({ isOpen }) => {
     const dispatch = useDispatch()
     const movie = useSelector(selectModalMovie)
 
-    console.log(movie)
-
     const handleClose = () => {
         dispatch(toggleModal())
     }
@@ -30,7 +28,7 @@ const Modal = ({ isOpen }) => {
                     <p>{movie.overview}</p>
                     <div className="modal__buttons">
                         <Button title='Play' />
-                        <Button title='My List' />
+                        <Button title='+ My List' />
                     </div>
                 </div>
                 <div className="modal__contentRight">

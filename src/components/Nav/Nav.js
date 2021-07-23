@@ -22,8 +22,20 @@ const Nav = () => {
     return (
         <div className={`nav ${show && 'nav__black'}`}>
             <div className="nav__contents">
-                <img className='nav__logo' src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png" alt="" onClick={() => history.push('/')} />
-                <img className='nav__avatar' src="https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png" alt="" onClick={() => history.push('/profile')} />
+                <div className="navLeft">
+                    <img className='nav__logo' src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png" alt="" onClick={() => history.push('/')} />
+                </div>
+                <div className="navCenter">
+                    <div className="nav__link" onClick={() => history.push('/tv_shows')} >TV Shows</div>
+                    <div className="nav__link" onClick={() => history.push('/action')} >Action</div>
+                    <div className="nav__link" onClick={() => history.push('/comedy')} >Comedy</div>
+                    <div className="nav__link" onClick={() => history.push('/romance')} >Romance</div>
+                    <div className="nav__link" onClick={() => history.push('/documentaries')} >Documentaries</div>
+                    <div className="nav__link" onClick={() => history.push('/my_list')} >My List</div>
+                </div>
+                <div className="navRight">
+                    <img className='nav__avatar' src="https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png" alt="" onClick={() => history.push('/profile')} />
+                </div>
             </div>
         </div>
     )
