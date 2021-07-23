@@ -1,4 +1,11 @@
 .myListScreen {
-    height: 100vh;
-    color: black;
+    height: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.myListScreen__body {
+    padding-top: 8%;
 }

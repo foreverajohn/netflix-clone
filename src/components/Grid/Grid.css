@@ -1,0 +1,27 @@
+.grid {
+    width: 100%;
+    padding-bottom: 80px;
+}
+
+.grid > h1 {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 60px;
+    font-weight: 400;
+    border-bottom: 1px solid #282c2d;
+    margin-bottom: 20px;
+    width: 50%;
+
+    @media screen and (max-width: 768px) {
+        font-size: 1.5rem;
+    }
+}
+
+.grid__content {
+    padding-top: 20px;
+    width: 80vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
+    grid-gap: 1rem;
+}

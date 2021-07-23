@@ -3,26 +3,14 @@ import './Banner.css'
 import axios from '../../axios'
 import requests, { IMAGE_BASE_URL } from '../../requests'
 import Button from '../Button/Button'
-import db from '../../firebase'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../features/userSlice'
+import { addToList } from '../../helpers'
 
 const Banner = () => {
     const [movie, setMovie] = useState([])
     const [loading, setLoading] = useState(true)
     const user = useSelector(selectUser)
-
-    const addToList = (movie) => {
-        db.collection('customers')
-            .doc(user.uid)
-            .collection('movie_list')
-            .add({
-                movie: movie
-            })
-            .catch((error) => {
-                console.error("Error writing document: ", error);
-            });
-    }
 
     useEffect(() => {
         async function fetchData() {
@@ -55,7 +43,7 @@ const Banner = () => {
                 <h1 className='banner__title'>{movie?.title || movie?.name || movie?.original_name}</h1>
                 <div className="banner__buttons">
                     <Button title='Play' />
-                    <Button title='+ My List' callback={() => addToList(movie)} />
+                    <Button title='+ My List' callback={() => addToList(movie, user.uid)} />
                 </div>
                 <h1 className="banner__description">{truncate(movie?.overview, 150)}</h1>
             </div>
