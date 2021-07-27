@@ -8,9 +8,10 @@ const Button = ({ title, movie }) => {
     const dispatch = useDispatch()
     const user = useSelector(selectUser)
     const movieList = useSelector(selectMovieList)
+    const onList = movieList.includes(movie?.id)
 
     const addMovieToList = (movie) => {
-        if (!movieList.includes(movie.id)) {
+        if (!onList) {
             db.collection('customers')
                 .doc(user.uid)
                 .collection('movie_list')
@@ -35,10 +36,8 @@ const Button = ({ title, movie }) => {
         }
     }
 
-    console.log(movieList)
-
     return (
-        <button onClick={() => addMovieToList(movie)}>{title}</button>
+        <button className={`${onList && 'onList'}`} onClick={() => addMovieToList(movie)}>{onList ? 'On List' : title}</button>
     )
 }
 

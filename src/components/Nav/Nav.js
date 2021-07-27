@@ -27,10 +27,10 @@ const Nav = () => {
                 </div>
                 <div className="navCenter">
                     <div className="nav__link" onClick={() => history.push('/tv_shows')} >TV Shows</div>
-                    <div className="nav__link" onClick={() => history.push('/action')} >Action</div>
-                    <div className="nav__link" onClick={() => history.push('/comedy')} >Comedy</div>
-                    <div className="nav__link" onClick={() => history.push('/romance')} >Romance</div>
-                    <div className="nav__link" onClick={() => history.push('/documentaries')} >Documentaries</div>
+                    <div className="nav__link" onClick={() => history.push('/byGenre/Action')} >Action</div>
+                    <div className="nav__link" onClick={() => history.push('/byGenre/Comedy')} >Comedy</div>
+                    <div className="nav__link" onClick={() => history.push('/byGenre/Romance')} >Romance</div>
+                    <div className="nav__link" onClick={() => history.push('/byGenre/Documentary')} >Documentary</div>
                     <div className="nav__link" onClick={() => history.push('/my_list')} >My List</div>
                 </div>
                 <div className="navRight">

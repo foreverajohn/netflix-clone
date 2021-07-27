@@ -1,4 +1,4 @@
-.myListScreen {
+.genreScreen {
     height: 100%;
     color: white;
     display: flex;
@@ -6,6 +6,6 @@
     align-items: center;
 }
 
-.myListScreen__body {
+.genreScreen__body {
     padding-top: 8%;
 }

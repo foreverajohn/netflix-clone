@@ -8,6 +8,7 @@ import db, { auth } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadMovieList, addSubscription, login, logout, selectUser, selectSubscription } from './features/userSlice'
 import MyListScreen from './screens/MyListScreen/MyListScreen';
+import GenreScreen from './screens/GenreScreen/GenreScreen';
 
 function App() {
   const user = useSelector(selectUser)
@@ -70,6 +71,9 @@ function App() {
               </Route>
               <Route path="/my_list">
                 <MyListScreen />
+              </Route>
+              <Route path="/byGenre/:genre">
+                <GenreScreen />
               </Route>
             </Switch>
           )
