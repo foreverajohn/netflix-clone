@@ -5,7 +5,6 @@ import requests, { IMAGE_BASE_URL } from '../../requests'
 import Button from '../Button/Button'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../features/userSlice'
-import { addToList } from '../../helpers'
 
 const Banner = () => {
     const [movie, setMovie] = useState([])
@@ -43,7 +42,7 @@ const Banner = () => {
                 <h1 className='banner__title'>{movie?.title || movie?.name || movie?.original_name}</h1>
                 <div className="banner__buttons">
                     <Button title='Play' />
-                    <Button title='+ My List' callback={() => addToList(movie, user.uid)} />
+                    <Button title='+ My List' movie={movie} />
                 </div>
                 <h1 className="banner__description">{truncate(movie?.overview, 150)}</h1>
             </div>

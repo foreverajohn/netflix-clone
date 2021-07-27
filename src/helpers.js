@@ -5,10 +5,14 @@ export const addToList = (movie, userId) => {
         .doc(userId)
         .collection('movie_list')
         .add({
-            movie: movie
+            id: movie.id,
+            movie
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
         });
 }
 
+export const checkList = async (movieId, movieList) => {
+    console.log(movieList?.includes(movieId))
+}

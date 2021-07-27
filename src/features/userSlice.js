@@ -19,11 +19,17 @@ export const userSlice = createSlice({
     },
     cancelSubsctiption: (state) => {
       state.user.subscription = null;
+    },
+    loadMovieList: (state, action) => {
+      state.user.movieList = action.payload;
+    },
+    updateMovieList: (state, action) => {
+      state.user.movieList.push(action.payload);
     }
   }
 });
 
-export const { login, logout, addSubscription } = userSlice.actions;
+export const { login, logout, addSubscription, loadMovieList, updateMovieList } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 

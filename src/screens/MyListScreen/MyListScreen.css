@@ -1,5 +1,5 @@
 .myListScreen {
-    height: 100%;
+    height: 100vh;
     color: white;
     display: flex;
     flex-direction: column;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomeScreen from './screens/HomeScreen/HomeScreen';
@@ -6,7 +6,7 @@ import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import db, { auth } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { addSubscription, login, logout, selectUser } from './features/userSlice'
+import { loadMovieList, addSubscription, login, logout, selectUser } from './features/userSlice'
 import MyListScreen from './screens/MyListScreen/MyListScreen';
 
 function App() {
@@ -32,6 +32,17 @@ function App() {
                 end_date: subscription.data().current_period_start.seconds
               }))
             })
+          })
+        const list = []
+        db.collection('customers')
+          .doc(userAuth.uid)
+          .collection('movie_list')
+          .get()
+          .then(querySnapshot => {
+            querySnapshot.forEach(async doc => {
+              list.push(doc.data().id)
+            })
+            dispatch(loadMovieList(list))
           })
       } else {
         dispatch(logout())
