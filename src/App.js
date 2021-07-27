@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect   } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomeScreen from './screens/HomeScreen/HomeScreen';
@@ -6,11 +6,12 @@ import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import db, { auth } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadMovieList, addSubscription, login, logout, selectUser } from './features/userSlice'
+import { loadMovieList, addSubscription, login, logout, selectUser, selectSubscription } from './features/userSlice'
 import MyListScreen from './screens/MyListScreen/MyListScreen';
 
 function App() {
   const user = useSelector(selectUser)
+  const subscription = useSelector(selectSubscription)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -57,7 +58,7 @@ function App() {
         {!user ? (
           <LoginScreen />
         ) : (
-          !user.subscription ? (
+          !subscription ? (
             <ProfileScreen />
           ) : (
             <Switch>

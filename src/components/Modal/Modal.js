@@ -1,8 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectModalMovie, toggleModal } from '../../features/appSlice'
-import { selectUser } from '../../features/userSlice'
-import { addToList, checkList } from '../../helpers'
 import { IMAGE_BASE_URL } from '../../requests'
 import Button from '../Button/Button'
 import './Modal.css'
@@ -10,7 +8,6 @@ import './Modal.css'
 const Modal = ({ isOpen }) => {
     const dispatch = useDispatch()
     const movie = useSelector(selectModalMovie)
-    const user = useSelector(selectUser)
 
     const handleClose = () => {
         dispatch(toggleModal())

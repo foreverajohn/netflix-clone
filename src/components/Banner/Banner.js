@@ -3,13 +3,10 @@ import './Banner.css'
 import axios from '../../axios'
 import requests, { IMAGE_BASE_URL } from '../../requests'
 import Button from '../Button/Button'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../features/userSlice'
 
 const Banner = () => {
     const [movie, setMovie] = useState([])
     const [loading, setLoading] = useState(true)
-    const user = useSelector(selectUser)
 
     useEffect(() => {
         async function fetchData() {

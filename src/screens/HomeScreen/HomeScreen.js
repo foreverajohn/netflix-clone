@@ -26,7 +26,6 @@ const HomeScreen = () => {
             <Row title='Documentaries' fetchUrl={requests.fetchDocumentaries} /> */}
             <Modal isOpen={isModalOpen} />
 
-
         </div>
     )
 }

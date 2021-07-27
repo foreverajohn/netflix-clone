@@ -18,3 +18,8 @@ button:hover {
     background-color: #e6e6e6;
     transition: all 0.2s;
 }
+
+.onList {
+    color: #000;
+    background-color: #e6e6e6;
+}

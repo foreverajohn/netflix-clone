@@ -25,7 +25,6 @@ const MyListScreen = () => {
             })
     }, [user.uid])
 
-    console.log(myList)
     return (
         <div className='myListScreen'>
             <Nav />
