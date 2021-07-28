@@ -49,7 +49,7 @@ const GenreScreen = () => {
             <div className="genreScreen__body">
                 <Grid title={state?.name}>
                     {movies?.map(movie => (
-                        <Thumbnail key={movie.id} movie={movie} callback={() => movieInfo(movie)} />
+                        <Thumbnail key={movie.id} movie={movie} callback={() => movieInfo(movie)} clickable />
                     ))}
                 </Grid>
             </div>
