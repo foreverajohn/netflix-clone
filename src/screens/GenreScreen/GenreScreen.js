@@ -9,11 +9,16 @@ import { useParams } from 'react-router'
 import Grid from '../../components/Grid/Grid'
 import Thumbnail from '../../components/Thumbnail/Thumbnail'
 import { useGenreFetch } from '../../hooks/useGenreFetch'
+import Modal from '../../components/Modal/Modal'
+import { useDispatch, useSelector } from 'react-redux'
+import { renderMovie, selectModalState, toggleModal } from '../../features/appSlice'
 
 const GenreScreen = () => {
     const [movies, setMovies] = useState([])
     const { genre } = useParams()
     const { state, loading } = useGenreFetch(genre)
+    const isModalOpen = useSelector(selectModalState)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         async function fetchData() {
@@ -33,16 +38,22 @@ const GenreScreen = () => {
         </div>
     }
 
+    const movieInfo = (movie) => {
+        dispatch(toggleModal())
+        dispatch(renderMovie(movie))
+    }
+
     return (
         <div className='genreScreen'>
             <Nav />
             <div className="genreScreen__body">
                 <Grid title={state?.name}>
                     {movies?.map(movie => (
-                        <Thumbnail key={movie.id} movie={movie} />
+                        <Thumbnail key={movie.id} movie={movie} callback={() => movieInfo(movie)} />
                     ))}
                 </Grid>
             </div>
+            <Modal isOpen={isModalOpen} />
         </div>
     )
 }

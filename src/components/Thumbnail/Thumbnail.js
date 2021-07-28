@@ -4,7 +4,7 @@ import './Thumbnail.css'
 
 const Thumbnail = ({ movie, callback }) => {
     return (
-        <div className='thumbnail' onDoubleClick={callback}>
+        <div className='thumbnail' onClick={callback}>
             <img src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.name || movie.original_name} />
         </div>
     )
