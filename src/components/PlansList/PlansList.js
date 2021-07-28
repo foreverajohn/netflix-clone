@@ -24,7 +24,8 @@ const PlansList = () => {
                     })
                 })
             })
-    }, [user.uid])
+            return subscription
+    }, [user.uid, subscription])
 
     useEffect(() => {
         db.collection('products')
