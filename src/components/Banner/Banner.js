@@ -4,13 +4,13 @@ import axios from '../../axios'
 import requests, { IMAGE_BASE_URL } from '../../requests'
 import Button from '../Button/Button'
 
-const Banner = () => {
+const Banner = ({ fetchUrl }) => {
     const [movie, setMovie] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         async function fetchData() {
-            const request = await axios.get(requests.fetchNetflixOriginals);
+            const request = await axios.get(fetchUrl);
             setMovie(
                 request.data.results[
                 Math.floor(Math.random() * request.data.results.length - 1)
@@ -20,7 +20,7 @@ const Banner = () => {
         }
         fetchData();
         setLoading(false);
-    }, [])
+    }, [fetchUrl])
 
     function truncate(string, n) {
         return string?.length > n ? string.substr(0, n - 1) + '...' : string;

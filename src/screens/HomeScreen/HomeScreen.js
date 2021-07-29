@@ -14,7 +14,7 @@ const HomeScreen = () => {
     return (
         <div className='homescreen'>
             <Nav />
-            <Banner />
+            <Banner fetchUrl={requests.fetchNetflixOriginals} />
             <Row title='Netflix Originals' fetchUrl={requests.fetchNetflixOriginals} isLargeRow={true} />
             <Row title='Trending Now' fetchUrl={requests.fetchTrending} />
             <Row title='Top Rated' fetchUrl={requests.fetchTopRated} />

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadMovieList, addSubscription, login, logout, selectUser, selectSubscription } from './features/userSlice'
 import MyListScreen from './screens/MyListScreen/MyListScreen';
 import GenreScreen from './screens/GenreScreen/GenreScreen';
+import TvShowsScreen from './screens/TvShowsScreen/TvShowsScreen';
 
 function App() {
   const user = useSelector(selectUser)
@@ -74,6 +75,9 @@ function App() {
               </Route>
               <Route path="/byGenre/:genre">
                 <GenreScreen />
+              </Route>
+              <Route path="/tv_shows">
+                <TvShowsScreen />
               </Route>
             </Switch>
           )
