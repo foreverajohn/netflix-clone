@@ -21,13 +21,13 @@ export const useMovieFetch = (genreId) => {
             setLoading(true)
 
             const response = await axios.get(requests.fetchByGenre + genreId + "&page=" + page)
-            
+
             setState(prev => ({
                 ...response.data,
                 results:
                     page > 1 ? [...prev.results, ...response.data.results] : [...response.data.results]
             }));
-            
+
         }
         catch {
             setError(true)
@@ -35,7 +35,7 @@ export const useMovieFetch = (genreId) => {
         setLoading(false)
     }
 
-    // Initial and search
+    // Initial 
     useEffect(() => {
         fetchMovies(genreId, 1);
     }, [genreId]);

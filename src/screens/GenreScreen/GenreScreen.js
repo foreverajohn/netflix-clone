@@ -33,7 +33,9 @@ const GenreScreen = () => {
     }
 
     useEffect(() => {
-        window.addEventListener('scroll', loadMore);
+        if (gridInnerRef) {
+            window.addEventListener('scroll', loadMore);
+        }
         return () => window.removeEventListener('scroll', loadMore);
     }, []);
 
@@ -44,9 +46,9 @@ const GenreScreen = () => {
     }, [setIsLoadingMore])
 
     return (
-        <div className='genreScreen' ref={gridInnerRef}>
+        <div className='genreScreen'>
             <Nav />
-            <div className="genreScreen__body">
+            <div className="genreScreen__body" ref={gridInnerRef}>
                 <Grid title={state?.name} >
                     {response.results.map(
                         (movie) =>
