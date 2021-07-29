@@ -1,4 +1,5 @@
 .app {
     background-color: #111;
+    min-height: 1280px;
     height: 100%;
 }
