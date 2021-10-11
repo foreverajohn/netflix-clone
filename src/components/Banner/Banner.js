@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Banner.css'
 import axios from '../../axios'
-import requests, { IMAGE_BASE_URL } from '../../requests'
+import { IMAGE_BASE_URL } from '../../requests'
 import Button from '../Button/Button'
 
 const Banner = ({ fetchUrl }) => {
